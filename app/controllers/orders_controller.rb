@@ -2,6 +2,14 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    # @line_items = LineItem.where(order_id: params[:id])
+    # @cart_contains = @line_items.each do |item|
+      # Product.find(item.product_id)
+    # end
+    @cart_contains = LineItem.joins(:order, :product).where(order_id: params[:id])
+    @cart_products =  Product.where(id: @cart_contains.select(:product_id))
+    # raise @cart_contains.inspect
+    # raise @cart_products.inspect 
   end
 
   def create
