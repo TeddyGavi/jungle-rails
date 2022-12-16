@@ -49,7 +49,9 @@
       <% end %>
     </div>
   </div>
-<% else %>
-<p class="alert alert-success" role="alert">The cart is empty! Go to the <a class="navbar-brand" href="<%= root_path %>">Jungle</a></p>
+  <% else %>
+    <div class="text-center">
+      <p class="alert alert-success" role="alert">The cart is empty! Go to the <a class="navbar-brand" href="<%= root_path %>">Jungle</a></p>
+    </div>
 <% end %>
 </section>
