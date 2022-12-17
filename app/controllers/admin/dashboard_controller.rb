@@ -1,4 +1,5 @@
-class Admin::DashboardController < ApplicationController
-   def show
+class Admin::DashboardController < Admin::BaseController
+
+  def show
   end
 end
