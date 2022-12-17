@@ -4,7 +4,8 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <h4>Thank you for your order! <em><%= @order.email %> </em></h4>
+ 
   </div>
     <div class="panel panel-default items">
     <table class="table table-bordered">
@@ -17,8 +18,9 @@
         </tr>
       </thead>
       <tbody>
-           <%# this is where order.<info> will go same format as in the cart view %>
-           <%= render 'item', order: @order %>
+      <% @order.line_items.each do |l_item| %>
+          <%= render 'item', product: l_item.product, quantity: l_item.quantity.to_i %>
+        <% end %>
       </tbody>
       <tfoot>
         <tr>
@@ -26,13 +28,12 @@
             TOTAL:
           </th>
           <th>
-            <%= humanized_money_with_symbol cart_subtotal_cents / 100.0 %>
+            <%= humanized_money_with_symbol @order.total_cents.to_i / 100.0 %>
           </th>
         </tr>
       </tfoot>
     </table>
   </div>
-  <%= @order.email %>
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
