@@ -5,6 +5,7 @@ module BasicAuthConcern
   end
   
   def http_authenticate
-    http_basic_authenticate_or_request_with name: ENV['ADMIN_USERNAME'].to_s, password: ENV['ADMIN_PASSWORD'].to_s
+    p ENV["ADMIN_USERNAME"]
+    # http_basic_authenticate_or_request_with(name: ENV['ADMIN_USERNAME'], password: ENV['ADMIN_PASSWORD'])
   end
 end
