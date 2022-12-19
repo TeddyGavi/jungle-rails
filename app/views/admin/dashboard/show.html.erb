@@ -1,2 +1,19 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<h1>Admin Dashboard</h1>
+<p>Below you will find a count of all products, and of each category. Click on the table heading to view the respective admin page. </p>
+<table class="table table-success table-hover">
+  <thead>
+    <tr>
+      <th scope="col"> <%= link_to 'Product #', [:admin, :products] %></th>
+      <th scope="col">Category #</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+      <td><%= @product_count %> </td>
+      <td> <%= @cat_count %></td>
+    </tr>
+    </tbody>
+</table>
+
+<p></p>
+
