@@ -16,6 +16,22 @@ class Admin::CategoriesController < Admin::BaseController
       render :new
     end
   end
+
+  def edit
+    @category = Category.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      flash[:notice] = "Category updated!"
+      redirect_to [:admin, :categories]
+    else
+      flash[:error] = "Category update failed!"
+      render :edit
+    end
+  end
   
   def destroy
     @category = Category.find(params[:id])
