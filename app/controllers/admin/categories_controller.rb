@@ -25,18 +25,21 @@ class Admin::CategoriesController < Admin::BaseController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      flash[:notice] = "Category updated!"
+      flash[:alert] = "Category updated!"
       redirect_to [:admin, :categories]
     else
-      flash[:error] = "Category update failed!"
+      flash[:alert] = "Category update failed!"
       render :edit
     end
   end
   
   def destroy
     @category = Category.find(params[:id])
-    @category.destroy
-    redirect_to [:admin, :categories], notice: 'Category deleted'
+    if @category.destroy
+      redirect_to [:admin, :categories], notice: 'Category deleted'
+    else
+      redirect_to [:admin, :categories], notice: 'Category delete failed!'
+    end
   end
 
   private
