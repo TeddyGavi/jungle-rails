@@ -1,6 +1,11 @@
-<h1>Signup!</h1>
+<section class="new-user">
 
-<%= form_for [:user, @user] do |form| %>
+  <header class="page-header">
+    <h1> Sign Up! </h1>
+  </header>
+
+
+<%= form_for :signup do |form| %>
 
    <div class="form-group">
     <%= form.label :first_name %>
@@ -11,7 +16,7 @@
     <%= form.text_field :last_name, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= form.label :e_mail %>
+      <%= form.label :email %>
       <%= form.email_field :e_mail, class: 'form-control' %>
     </div>
     <div class="form-group">
@@ -22,6 +27,9 @@
       <%= form.label :password_confirmation, class: 'form-control' %>
       <%= form.password_field :password_confirmation, class: 'form-control' %>
     </div>
- <%= f.submit "Save User", class: 'btn btn-primary' %>
+    <br>
+ <%= form.submit "Save User", class: 'btn btn-primary' %>
 
 <% end %>
+
+</section>

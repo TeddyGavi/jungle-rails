@@ -1,0 +1,30 @@
+<section class="new-user-session">
+  <header class="page-header">
+    <h1> Login </h1>
+  </header>
+
+  <div class="well">
+    <%= link_to 'Home', [:root], class: 'btn btn-info' %>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= form_for :login do |form| %> 
+   
+
+      <div class="form-group">
+        <%= form.label :email %> 
+        <%= form.text_field :e_mail, class: 'form-control' %>
+      </div>
+      <br>
+      <div class="form-group">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: 'form-control' %>
+      </div>
+      <br>
+      <%= form.submit 'Login', class: 'btn btn-primary' %> 
+      <% end %>
+    </div>
+  </div>
+</section>
