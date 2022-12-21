@@ -3,13 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # render json: params
-    @user = User.find_by(e_mail: params[:e_mail])
-    if @user && @user.authenticate(params[:password_digest])
-      session[:user_id] = @user.id
-      redirect_to root_path
-    else
+    # raise params.inspect
+    user = User.find_by_e_mail(params[:login][:e_mail])
+    # puts user.authenticate params[:login][:password]
+    # raise user.inspect
+    if user && user.authenticate(params[:login][:password])
+      session[:user_id] = user.id
       redirect_to :root
+    else
+      redirect_to :login
     end
   end
 
