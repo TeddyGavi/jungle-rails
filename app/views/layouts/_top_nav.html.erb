@@ -60,6 +60,7 @@
             <li><%= link_to 'Categories', [:admin, :categories], class: "nav-link" %></li>
           </ul>
         </li>
+       <!--
          <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle text-danger"
@@ -71,11 +72,23 @@
           >
             More
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
+           <ul class="dropdown-menu dropdown-menu-dark">
         <li><%= link_to 'About', about_index_path, class: 'nav-link' %></li>
-        <!-- <li><%= link_to 'FAQ', class: 'nav-link' %></li> -->
-        <!-- <li><%= link_to 'Help', class: 'nav-link' %></li> -->
-        </ul>
+         <li><%= link_to 'FAQ', class: 'nav-link' %></li> 
+         <li><%= link_to 'Help', class: 'nav-link' %></li> 
+        </ul> 
+        
+        -->
+
+        <li class="nav-link">
+        <% if current_user %>
+            Signed in as <%= current_user.e_mail %> | <%= link_to "Logout", :logout, class:  "text-danger" %>
+          <% else %>
+          
+            <%= link_to 'Login', :login, class: "text-danger"  %> |
+            <%= link_to 'Signup', :signup, class: "text-danger"  %>
+          <% end %>
+       </li>
         <li class="nav-item end-0">
           <%= link_to cart_path, class: "nav-link " do %> <%= fa_icon "shopping-cart" %>
           My Cart (<%= cart.size %>) <% end %>

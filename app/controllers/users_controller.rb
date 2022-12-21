@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # render json: params
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Successfully created user."
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(
         :first_name,
         :last_name,
-        :email, 
+        :e_mail, 
         :password, 
         :password_confirmation
       )
