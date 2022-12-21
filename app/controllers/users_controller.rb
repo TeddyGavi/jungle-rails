@@ -12,7 +12,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to :root
     else
-      redirect_to :signup
+      # redirect_to :signup
+      render :new
     end
   end
 
