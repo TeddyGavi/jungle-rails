@@ -3,10 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # raise params.inspect
     @user = User.find_by_e_mail(params[:login][:e_mail])
-    # puts user.authenticate params[:login][:password]
-    # raise user.inspect
     if @user && @user.authenticate(params[:login][:password])
       session[:user_id] = @user.id
       redirect_to :root
