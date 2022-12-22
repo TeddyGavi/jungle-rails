@@ -1,0 +1,31 @@
+<section class="admin-sales-index">
+
+  <header class="page-header">
+    <h1>Admin &raquo; Sales</h1>
+  </header>
+
+  <div class="well">
+    <%= link_to '+ New Sale', [:new, :admin, :sale], class: 'btn btn-info' %>
+  </div>
+  <br>
+
+  <div class="panel panel-default products">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Sales</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Qty Remaining</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @sales %>
+      </tbody>
+    </table>
+
+  </div>
+
+</section>
