@@ -217,6 +217,21 @@ cat3.products.create!({
   price: 79.99
 })
 
+puts "Destroying Sales"
+  Sale.destroy_all
+
+puts "SEEDING SALES"
+
+  2.times do 
+    start_date = Faker::Date.between(from: 1.year.ago, to: Date.today)
+    sale_length = rand(1..14).day
+    Sale.create(
+      name: Faker::Name.first_name,
+      percent_off: rand(1..40),
+      starts_on: start_date,
+      ends_on: Faker::Date.between(from: start_date, to: start_date + sale_length)
+    )
+  end
 
 puts "DONE!"
 
