@@ -223,7 +223,7 @@ puts "Destroying Sales"
 puts "SEEDING SALES"
 
   2.times do 
-    start_date = Faker::Date.between(from: 1.year.ago, to: Date.today)
+    start_date = Faker::Date.between(from: 1.year.ago, to: 1.year.from_now)
     sale_length = rand(1..14).day
     Sale.create(
       name: Faker::Name.first_name,

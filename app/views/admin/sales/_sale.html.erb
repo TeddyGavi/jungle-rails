@@ -12,9 +12,9 @@
  <!--   <span class="badge bg-success">Active</span>
     <span class="badge bg-danger">Inactive</span>
     <span class="badge bg-warning">Upcoming</span> -->
-    <% if sale.ends_on < Date.current %>
+    <% if sale.finished? %>
       <span class="badge bg-danger">Inactive</span>
-    <% elsif sale.starts_on > Date.current %>
+    <% elsif sale.upcoming? %>
       <span class="badge bg-warning">Upcoming</span>
     <% else %>
       <span class="badge bg-success">Active</span>
