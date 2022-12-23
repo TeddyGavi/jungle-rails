@@ -25,20 +25,27 @@ class Admin::CategoriesController < Admin::BaseController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      flash[:alert] = "Category updated!"
+      # flash[:alert] = "Category updated!"
+      # redirect_to [:admin, :categories]
       redirect_to [:admin, :categories]
     else
-      flash[:alert] = "Category update failed!"
+      # flash[:alert] = "Category update failed!"
       render :edit
     end
   end
   
   def destroy
     @category = Category.find(params[:id])
-    if @category.destroy
-      redirect_to [:admin, :categories], notice: 'Category deleted'
-    else
-      redirect_to [:admin, :categories], notice: 'Category delete failed!'
+    # respond_to do |format| 
+      if @category.destroy
+      #  format.html { redirect_to [:admin, :categories], notice: 'Category deleted successfully'}
+        # format.json { render json: [:admin, :categories], status: :deleted, location: @category}
+        redirect_to [:admin, :categories], notice: 'Category deleted'
+      else
+          # format.html {render :index, status: :unprocessable_entity }
+        # format.json {render json: @category.errors, status: :unprocessable_entity}
+        redirect_to [:admin, :categories], notice: 'Category delete failed!'
+        
     end
   end
 

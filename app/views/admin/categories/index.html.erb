@@ -3,6 +3,17 @@
     <h1>Admin &raquo; Categories</h1>
   </header>
   <p>
+<% @categories.each do |c| %>
+  <% if c.errors.any? %>
+  <div class="alert alert-danger">
+    <% c.errors.full_messages.each do |e|%>
+    <div><%= e%></div>
+    <% end %>
+    <% end %>
+  <% end %>
+  </div>
+
+
     <%= link_to '+ Create New', [:new, :admin, :category], class: 'btn
     btn-info'%>
   </p>
@@ -16,6 +27,9 @@
     </thead>
     <tbody>
       <% @categories.each do |c| %>
+
+
+
       <tr>
         <td><%= c.name %></td>
         <td>
