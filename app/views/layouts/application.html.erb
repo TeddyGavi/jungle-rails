@@ -15,7 +15,12 @@
   </head>
   <body>
     <%= render 'layouts/top_nav' %>
-
+    <%# <%= debug @sale %> 
+    <% if active_sale? %>
+      <% @sale.each do |s|%>
+        <p class="alert alert-info">There is a Sale <%= s.name %> Everything is <%= s.percent_off %> % off! </p>
+      <% end %>
+    <% end %>
     <main class="container"><%= yield %></main>
 
     <%= yield :end_of_body %>
