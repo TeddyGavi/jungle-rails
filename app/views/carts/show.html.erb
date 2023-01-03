@@ -21,6 +21,24 @@
         <% end %>
       </tbody>
       <tfoot>
+        <% if active_sale? %>
+          <tr>
+            <th colspan="4">
+            SALE:  
+            </th>
+            <th>
+            <%= @sale.first.percent_off %> %
+            </th>
+          </tr>
+          <tr>
+          <th colspan="4"> 
+          SUBTOTAL: 
+            </th>
+            <th>
+            <%= humanized_money_with_symbol subtotal_without_modifications / 100.0 %>
+            </th>
+            </tr>
+        <% end %>
         <tr>
           <th colspan="4">
             TOTAL:
@@ -29,16 +47,7 @@
             <%= humanized_money_with_symbol cart_subtotal_cents / 100.0 %>
           </th>
         </tr>
-        <% if active_sale? %>
-          <tr>
-            <th colspan="4">
-            SALE: - <%= @sale.first.percent_off %> %
-            </th>
-            <th>
-            <%= humanized_money_with_symbol cart_sale_subtotal_cents / 100.0 %>
-            </th>
-          </tr>
-        <% end %>
+      
       </tfoot>
     </table>
   </div>

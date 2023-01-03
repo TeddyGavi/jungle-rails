@@ -24,6 +24,6 @@
     <%= sale.percent_off %> 
   </td>
   <td>
-    <%= fa_icon('trash') %>
+    <%= link_to fa_icon('trash'), [:admin, sale], class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" }  %>
   </td>
 </tr>

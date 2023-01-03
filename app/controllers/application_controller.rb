@@ -15,17 +15,21 @@ class ApplicationController < ActionController::Base
   helper_method :enhanced_cart
 
   def cart_subtotal_cents
-    enhanced_cart.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
+    subtotal = enhanced_cart.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
+    if Sale.active.any?
+      percent_off = Sale.active.first.percent_off
+      order_discount = subtotal * percent_off / 100
+      subtotal - order_discount
+    else
+      subtotal
+    end
   end
   helper_method :cart_subtotal_cents
 
-  def cart_sale_subtotal_cents
-      percent_off = Sale.active.first.percent_off
-      subtotal = cart_subtotal_cents
-      order_discount = subtotal * percent_off / 100
-      subtotal - order_discount
+  def subtotal_without_modifications
+    enhanced_cart.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
   end
-  helper_method :cart_sale_subtotal_cents
+  helper_method :subtotal_without_modifications
 
   def update_cart(new_cart)
     cookies[:cart] = {

@@ -17,6 +17,15 @@ class Admin::SalesController < Admin::BaseController
     end
   end
 
+  def destroy
+    @sale = Sale.find(params[:id])
+    if @sale.destroy
+      redirect_to [:admin, :sales], notice: "Sale deleted"
+    else
+      redirect_to [:admin, :sales], notice: "Sale could not be deleted when active"
+    end
+  end
+
   private
 
   def sale_params
