@@ -5,7 +5,7 @@ class Admin::SalesController < Admin::BaseController
   end
   
   def new
-    @sales = Sale.new
+    @sale = Sale.new
   end
 
   def create
