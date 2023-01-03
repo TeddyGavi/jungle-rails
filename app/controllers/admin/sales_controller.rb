@@ -1,4 +1,4 @@
-class Admin::SalesController < ApplicationController
+class Admin::SalesController < Admin::BaseController
   
   def index
     @sales = Sale.order(starts_on: :desc).all
