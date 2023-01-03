@@ -1,4 +1,5 @@
 class Sale < ApplicationRecord
+  validates :name, :percent_off, :starts_on, :ends_on, presence: true
 
   # AR scope
   def self.active
