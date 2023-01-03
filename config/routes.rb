@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resource :cart, only: [:show] do
     post   :add_item
     post   :remove_item
+    post   :empty_cart
   end
 
   resources :orders, only: [:create, :show]

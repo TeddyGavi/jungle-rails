@@ -15,7 +15,6 @@
   </head>
   <body>
     <%= render 'layouts/top_nav' %>
-    <%# <%= debug @sale %> 
     <% if active_sale? %>
       <% @sale.each do |s|%>
         <p class="alert alert-info">There is a  <%= s.name %>, <%= s.percent_off %> % off! </p>

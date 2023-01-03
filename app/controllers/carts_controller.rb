@@ -17,6 +17,12 @@ class CartsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def empty_cart 
+    update_cart({})
+    cookies.delete(:cart)
+    redirect_to :root
+  end
+
   private
 
   def modify_cart_delta(product_id, delta)
