@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cart_subtotal_cents
 
+  def cart_sale_subtotal_cents
+      percent_off = Sale.active.first.percent_off
+      subtotal = cart_subtotal_cents
+      order_discount = subtotal * percent_off / 100
+      subtotal - order_discount
+  end
+  helper_method :cart_sale_subtotal_cents
+
   def update_cart(new_cart)
     cookies[:cart] = {
       value: JSON.generate(new_cart),
