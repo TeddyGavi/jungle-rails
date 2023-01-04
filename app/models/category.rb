@@ -8,7 +8,6 @@ class Category < ApplicationRecord
 
   def has_products
     if self.products.count >= 1
-      self.errors.add(:product, "Cannot delete a category that contains products, considering renaming?") 
       throw :abort
     end
   

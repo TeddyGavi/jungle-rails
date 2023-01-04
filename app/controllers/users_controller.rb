@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     # render json: params
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Successfully created user."
+      flash[:Notice] = "Successfully created user."
       session[:user_id] = @user.id
       redirect_to :root
     else

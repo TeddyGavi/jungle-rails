@@ -99,9 +99,24 @@
   </div>
 </nav>
 <% flash.each do |type, msg| %>
-  <div>
-    <%= type %> : <%= msg %>
-  </div>
+  <div class="row">
+  <% if type != 'Error' %>
+      <div class="alert alert-info">
+        <strong><%= type %>:</strong>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      </div>
+    </div>
+    <% else %>
+       <div class="alert alert-danger">
+        <strong><%= type %>:</strong>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      </div>
+    </div>
+    <% end %>
 <% end %>
 <script>
 (function(){
