@@ -98,8 +98,9 @@
     </div>
   </div>
 </nav>
+
+<!-- ERROR HANDLING OF FLASH MESSAGES -->
 <% flash.each do |type, msg| %>
-  <div class="row">
   <% if type != 'Error' %>
       <div class="alert alert-info">
         <strong><%= type %>:</strong>
@@ -115,9 +116,10 @@
           <li><%= msg %></li>
         </ul>
       </div>
-    </div>
     <% end %>
 <% end %>
+<!-- END -->
+
 <script>
 (function(){
 const gnr = () => {

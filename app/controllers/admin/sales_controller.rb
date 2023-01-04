@@ -11,7 +11,8 @@ class Admin::SalesController < Admin::BaseController
   def create
     @sale = Sale.new(sale_params)
     if @sale.save
-      redirect_to [:admin, :sales], notice: "Sale created"
+      flash[:Notice] = "Sale created" 
+      redirect_to [:admin, :sales]
     else
       render :new
     end
@@ -20,9 +21,11 @@ class Admin::SalesController < Admin::BaseController
   def destroy
     @sale = Sale.find(params[:id])
     if @sale.destroy
-      redirect_to [:admin, :sales], notice: "Sale deleted"
+      flash[:Notice] = "Sale deleted" 
+      redirect_to [:admin, :sales]
     else
-      redirect_to [:admin, :sales], notice: "Sale could not be deleted when active"
+      flash[:Error] = "Sale count not be deleted"
+      redirect_to [:admin, :sales]
     end
   end
 

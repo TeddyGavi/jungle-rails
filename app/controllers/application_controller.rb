@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  # Add a before_filter to any controller that you want to secure. This will force user's to login before they can see the actions in this controller. 
+  # Add a authorize to any controller that you want to secure. This will force user's to login  
   def authorize
     redirect_to '/login' unless current_user
   end

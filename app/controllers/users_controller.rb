@@ -4,14 +4,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    # render json: params
     @user = User.new(user_params)
     if @user.save
       flash[:Notice] = "Successfully created user."
       session[:user_id] = @user.id
       redirect_to :root
     else
-      # redirect_to :signup
       render :new
     end
   end
