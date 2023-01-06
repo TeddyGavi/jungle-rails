@@ -29,6 +29,22 @@ class Admin::SalesController < Admin::BaseController
     end
   end
 
+  def edit
+    @sale = Sale.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @sale = Sale.find(params[:id])
+    if @sale.update(sale_params)
+      flash[:Notice] = "Sale updated!"
+      redirect_to [:admin, :sales]
+    else
+      flash[:Alert] = "Sale update failed!"
+      redirect_to [:admin, :sales, :edit]
+    end
+  end
+
   private
 
   def sale_params
