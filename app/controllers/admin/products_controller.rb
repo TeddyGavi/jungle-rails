@@ -21,7 +21,8 @@ class Admin::ProductsController < Admin::BaseController
   def destroy
     @product = Product.find params[:id]
     @product.destroy
-    redirect_to [:admin, :products], notice: 'Product deleted!'
+    flash[:Notice] = "Product deleted!"
+    redirect_to [:admin, :products]
   end
 
   private

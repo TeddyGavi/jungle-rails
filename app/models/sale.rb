@@ -1,5 +1,6 @@
 class Sale < ApplicationRecord
-  validates :name, :percent_off, :starts_on, :ends_on, presence: true
+  validates :name, uniqueness: { case_sensitive: true }, presence: true
+  validates :percent_off, :starts_on, :ends_on, presence: true
 
   before_destroy :is_active?, prepend: true
   # AR scope
