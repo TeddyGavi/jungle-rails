@@ -4,10 +4,14 @@ class SessionsController < ApplicationController
 
   def create
     # trim white space, is the best way to do this? Do not want to strip the password
-    email = login_params[:e_mail] 
-    @user = User.find_by_e_mail(email.downcase.strip) 
-    if @user && @user.authenticate(login_params[:password])
-      session[:user_id] = @user.id
+    # if @user && @user.authenticate(login_params[:password])
+
+    email = params[:login][:e_mail] 
+    user_auth = User.authenticate_with_credentials(email.downcase.strip, params[:login][:password])
+    if user_auth != nil
+      session[:user_id] = user_auth.id
+      # User.find_by_e_mail(email.downcase.strip).id
+      # @user.id
       redirect_to :root
     else
       flash[:Error] = "Invalid login"
@@ -19,9 +23,5 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to :login
   end
-private
 
-def login_params
-  params.require(:login).permit(:e_mail, :password)
-end 
 end

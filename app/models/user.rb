@@ -7,12 +7,13 @@ class User < ApplicationRecord
   validates :e_mail, uniqueness: { case_sensitive: false }, presence: true
   validates :password, length: { minimum: 3 } 
 
-def authenticate_with_credentials(email, password) 
-  email = email.downcase.strip
-  user = User.find_by_email(email)
-  
-  if user && user.authenticate(password)
-    user
+  # not sure if abstracting this to the User model was needed, however, it does keep most logic regarding checking the user validity inside this class, however checking login validity should maybe remain in the session controller?
+  # There is no session model created, is that why we moved the logic here? there must be a way to test a controller?
+
+def self.authenticate_with_credentials(email, password) 
+  @user = User.find_by_e_mail(email)
+  if @user && @user.authenticate(password)
+    @user
   else
     nil
   end

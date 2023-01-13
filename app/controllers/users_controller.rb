@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to :root
     else
+      flash[:Error] = "Invalid input!"
       render :new
     end
   end
