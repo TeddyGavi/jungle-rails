@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :e_mail, uniqueness: { case_sensitive: false }, presence: true
   validates :password, length: { minimum: 3 } 
 
+def authenticate
+
 end
