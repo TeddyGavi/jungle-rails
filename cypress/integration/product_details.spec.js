@@ -1,4 +1,4 @@
-describe("it should be able to visit the home page", () => {
+describe("Users should be able to view product detail page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000");
   });

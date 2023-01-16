@@ -1,0 +1,39 @@
+describe("Users should be able to login, and logout and register", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:3000");
+  });
+
+  it("Should login a already registered user", () => {
+    cy.get('[href="/login"]').click({ force: true });
+    cy.get(".new-user-session").should("be.visible");
+    cy.get("#login_e_mail").type("bob@gmail.com");
+    cy.get("#login_password").type("1234");
+    cy.get("#data-testid-login").click();
+    cy.get("li.nav-link").should("contain", "Signed in as bob@gmail.com");
+  });
+
+  it("should be able to logout a registered user", () => {
+    cy.get('[href="/login"]').click({ force: true });
+    cy.get(".new-user-session").should("be.visible");
+    cy.get("#login_e_mail").type("bob@gmail.com");
+    cy.get("#login_password").type("1234");
+    cy.get("#data-testid-login").click();
+    cy.get("li.nav-link").should("contain", "Signed in as bob@gmail.com");
+
+    // logout
+    cy.get("li.nav-link > .text-danger").click();
+    cy.get("li.nav-link").should("not.contain", "Signed in as bob@gmail.com");
+    cy.get("li.nav-link").contains("Login | Signup");
+  });
+
+  it("Should be able to register a user, and automatically login", () => {
+    cy.get('[href="/signup"]').should("be.visible");
+    cy.get('[href="/signup"]').click({ force: true });
+    cy.get(".new-user").should("be.visible");
+    cy.get("#user_first_name").type("test");
+    cy.get("#user_last_name").type("hello");
+    cy.get("#user_e_mail").type("test@example.com");
+    cy.get("#user_password").type("0123");
+    cy.get("#user_password_confirmation").type("0123");
+  });
+});
