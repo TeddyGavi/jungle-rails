@@ -23,7 +23,7 @@ CypressRails.hooks.before_server_start do
     quantity: 18,
     price: 24.99
   })
-
+  
  User.create!({
     first_name: "Bob",
     last_name: "Bibility",
