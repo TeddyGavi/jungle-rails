@@ -18,4 +18,15 @@ describe("it should be able to visit the home page", () => {
     cy.get("#data-testid-add-cart-2").click({ force: true });
     cy.get(".end-0").should("contain", "My Cart (1)");
   });
+
+  it("should decrease the cart total by 1 when the reduce by one button is clicked", () => {
+    cy.get(".end-0").should("contain", "My Cart (0)");
+    cy.get("#data-testid-add-cart-2").click({ force: true });
+    cy.get(".end-0").should("contain", "My Cart (1)");
+    cy.get(".end-0 > a").click();
+    cy.get(".cart-show").should("contain", "Pay with Card");
+    cy.get('[action="/cart/remove_item?product_id=2"] > .btn').click();
+    cy.get(".end-0").should("contain", "My Cart (0)");
+    cy.get(".cart-show").should("not.contain", "Pay with Card");
+  });
 });
