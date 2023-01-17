@@ -40,8 +40,7 @@ end
 
 CypressRails.hooks.after_state_reset do
   # Triggered after `/cypress_rails_reset_state` is called
-  User.find_by(e_mail: "test@example.com")
-
+ 
 end
 
 CypressRails.hooks.before_server_stop do
