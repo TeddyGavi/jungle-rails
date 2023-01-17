@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user_auth.id
       # User.find_by_e_mail(email.downcase.strip).id
       # @user.id
+      cookies[:user_id] = user_auth.id
+
       redirect_to :root
     else
       flash[:Error] = "Invalid login"
@@ -21,6 +23,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    cookies.delete :user_id
     redirect_to :login
   end
 

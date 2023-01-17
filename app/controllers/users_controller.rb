@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:Notice] = "Successfully created user."
       session[:user_id] = @user.id
+      # cookies[:user_id] = @user.id
       redirect_to :root
     else
       flash[:Error] = "Invalid input!"
