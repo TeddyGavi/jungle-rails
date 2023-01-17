@@ -14,10 +14,9 @@ describe("Users should be able to login, and logout and register", () => {
     cy.get("#data-testid-login").click();
     cy.get("li.nav-link").should("contain", "Signed in as bob@gmail.com");
     cy.getCookies()
-      .should("have.length", 2)
+      .should("have.length", 1)
       .should((cookies) => {
-        expect(cookies[0]).to.have.property("name", "user_id");
-        expect(cookies[1]).to.have.property("name", "_new_session");
+        expect(cookies[0]).to.have.property("name", "_new_session");
       });
   });
 
@@ -31,10 +30,9 @@ describe("Users should be able to login, and logout and register", () => {
     cy.get("#data-testid-login").click();
     cy.get("li.nav-link").should("contain", "Signed in as bob@gmail.com");
     cy.getCookies()
-      .should("have.length", 2)
+      .should("have.length", 1)
       .should((cookies) => {
-        expect(cookies[0]).to.have.property("name", "user_id");
-        expect(cookies[1]).to.have.property("name", "_new_session");
+        expect(cookies[0]).to.have.property("name", "_new_session");
       });
     // logout
     cy.get("li.nav-link > .text-danger").click();

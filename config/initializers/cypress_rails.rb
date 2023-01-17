@@ -40,7 +40,7 @@ end
 
 CypressRails.hooks.after_state_reset do
   # Triggered after `/cypress_rails_reset_state` is called
-  User.find_by(e_mail: "test@example.com").destroy!
+  User.find_by(e_mail: "test@example.com")
 
 end
 

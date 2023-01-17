@@ -66,7 +66,10 @@ RSpec.describe User, type: :model do
         password: 'test',
         password_confirmation: 'test',
       )
+      test_user1.save
+      puts test_user1.errors.full_messages
      expect(User.find_by(first_name: 'Jane')).to be_nil 
+    #  expect(test_user1).to_not be_valid
     
     end
 

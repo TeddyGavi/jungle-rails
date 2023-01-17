@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user_auth.id
       # User.find_by_e_mail(email.downcase.strip).id
       # @user.id
-      cookies[:user_id] = user_auth.id
+      # cookies[:user_id] = user_auth.id
 
       redirect_to :root
     else
