@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   def show
+    authorize
     @order = Order.find(params[:id])
  
   end
@@ -15,7 +16,9 @@ class OrdersController < ApplicationController
       if order.valid?
         empty_cart!
         # add mailer for order reciept here
-        mail = RecieptMailer.send_order_reciept(@current_user)
+        mail = RecieptMailer.send_order_reciept(@current_user, order)
+        # so the message shows in terminal
+        pp mail.message
         # un comment the raise to see the mail message will actually be sent
         # need to configure actually settings in the dev environment to use the smtp source server of choice
         # raise mail.inspect 
@@ -37,6 +40,7 @@ class OrdersController < ApplicationController
   end
 
   def perform_stripe_charge
+    authorize
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
@@ -46,7 +50,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order(stripe_charge)
-
+    authorize
     order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_subtotal_cents,
