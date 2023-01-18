@@ -46,6 +46,9 @@ class ApplicationController < ActionController::Base
 
   # Add a authorize to any controller that you want to secure. This will force user's to login  
   def authorize
-    redirect_to '/login' unless current_user
+    unless current_user
+      flash[:Notice] = "Plase login or register"
+      redirect_to '/login' 
+    end
   end
 end

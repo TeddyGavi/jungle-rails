@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
 
   def show
+    authorize
   end
 
   def add_item
