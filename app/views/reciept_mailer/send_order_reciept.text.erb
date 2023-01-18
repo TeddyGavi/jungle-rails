@@ -1,3 +1,8 @@
-Hello, <%= @user.first_name? ? @user.first_name : "" %> Thank you for your order of the following: 
-Order Summary
-<%= @order.line_items %>
+Hello,  Thank you for your order of the following: 
+
+<% @order.line_items.each do |l_item| %>
+Name: <%= l_item.product.name%>  Price: <%= humanized_money_with_symbol l_item.product.price%> Quantity: <%= l_item.quantity%> Total: <%= humanized_money_with_symbol l_item.product.price * l_item.quantity %> 
+
+<% end %>
+
+Your Order Total: <%= humanized_money_with_symbol @order.total_cents.to_i / 100.00 %>

@@ -16,9 +16,11 @@ class OrdersController < ApplicationController
       empty_cart!
       # add mailer for order reciept here
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
-      puts @current_user
-      RecieptPreview.send_order_reciept(@current_user, order)
-      redirect_to order, notice: 'Your Order has been placed.'
+      raise @current_user.inspect
+      puts @current_user.e_mail
+      RecieptMailer.with({user: @current_user}).send_order_reciept
+      flash[:Notice] = 'Your Order has been placed.'
+      redirect_to order 
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
     end
@@ -38,7 +40,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "Your Jungle Order",
       currency:    'cad'
     )
   end

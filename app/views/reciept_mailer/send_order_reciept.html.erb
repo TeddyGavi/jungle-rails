@@ -4,13 +4,55 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
       /* Email styles need to be inline */
+      table {
+        width: 50%;
+      }
+      table, th, td {
+        border: 2px solid black;
+      }
     </style>
   </head>
 
   <body>
     <%= yield %>
-    <p>Hello, <%= @user.first_name? ? @user.first_name : "" %> Thank you for your order of the following</p>
-    <p>Order Summary</p>
-    <p><%= @order.id %></p>
+
+    <p>Hello</p>
+    <p>Below is your order summary from the <%= link_to 'Jungle', [:root] %></p>
+      <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.line_items.each do |l_item| %> 
+        
+        <tr>
+          <td>
+            <h4><%= l_item.product.name %></h4>
+          
+          </td>
+          <td><%=humanized_money_with_symbol l_item.product.price %></td>
+          <td><%= l_item.quantity %></td>
+          <td><%= humanized_money_with_symbol l_item.product.price * l_item.quantity %></td>
+        </tr>
+        
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">TOTAL:</th>
+          <td>
+            <%= humanized_money_with_symbol @order.total_cents.to_i / 100.0 %>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+
   </body>
 </html>
