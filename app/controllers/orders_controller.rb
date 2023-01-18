@@ -3,9 +3,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
  
-    # @cart_contains = LineItem.joins(:order, :product).where(order_id: params[:id])
-    # @cart_products =  Product.where(id: @cart_contains.select(:product_id))
- 
   end
 
   def create
@@ -22,7 +19,7 @@ class OrdersController < ApplicationController
         # un comment the raise to see the mail message will actually be sent
         # need to configure actually settings in the dev environment to use the smtp source server of choice
         # raise mail.inspect 
-        
+
         flash[:Notice] = 'Your Order has been placed.'
         redirect_to order 
       else
