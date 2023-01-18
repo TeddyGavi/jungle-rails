@@ -6,4 +6,8 @@ class Order < ApplicationRecord
 
   validates :stripe_charge_id, presence: true
 
+  # def send_order_reciept
+  #   RecieptMailer.send_order_reciept
+  # end
+
 end

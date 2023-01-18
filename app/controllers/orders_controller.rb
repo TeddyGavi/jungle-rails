@@ -16,7 +16,8 @@ class OrdersController < ApplicationController
       empty_cart!
       # add mailer for order reciept here
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
-      OrderRecieptMailer.send_order_reciept(@current_user, order)
+      puts @current_user
+      RecieptPreview.send_order_reciept(@current_user, order)
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }

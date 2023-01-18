@@ -11,6 +11,6 @@
     <%= yield %>
     <p>Hello, <%= @user.first_name? ? @user.first_name : "" %> Thank you for your order of the following</p>
     <p>Order Summary</p>
-    <p><%= @order.line_items %></p>
+    <p><%= @order.id %></p>
   </body>
 </html>

@@ -1,4 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@jungle.com'
-  layout 'mailer'
+  # can add default to here, but if you use layout 'mailer' it will point rails to layouts/*mailer.html.erb etc
 end
