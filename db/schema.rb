@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 2023_01_12_203407) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id", unique: true
+    t.text "description"
+    t.integer "rating", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   # create_table "widgets", force: :cascade do |t|
   #   t.datetime "created_at", precision: 6, null: false
   #   t.datetime "updated_at", precision: 6, null: false
