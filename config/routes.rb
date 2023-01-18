@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
     resources :categories
     resources :sales
-    get 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
    end
 
   # The priority is based upon order of creation: first created -> highest priority.

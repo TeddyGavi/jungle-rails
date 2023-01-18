@@ -1,7 +1,7 @@
 class RecieptMailer < ApplicationMailer
   def send_order_reciept(user)
-    @user = user
-    puts "sending order reciept to #{@user.e_mail}"
+    # raise user.inspect
+    puts "sending order reciept to #{user.e_mail}"
 
     # raise params.inspect
     # @user = User.find(1)
@@ -14,8 +14,7 @@ class RecieptMailer < ApplicationMailer
     mail({
       # user: @user,
       # order: params[:order],
-      to: "test@example.com #{}",
-      from: 'no-reply@jungle.com',
+      to: "#{user.e_mail}",
       subject: "Order Reciept for Jungle Order ##{@order.id}",
       # body:"",
       # template_path: 'reciept_mailer',

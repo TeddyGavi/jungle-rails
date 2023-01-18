@@ -18,8 +18,11 @@ class OrdersController < ApplicationController
       if order.valid?
         empty_cart!
         # add mailer for order reciept here
-        puts @current_user.e_mail
-        RecieptMailer.with(user: @current_user).send_order_reciept
+        mail = RecieptMailer.send_order_reciept(@current_user)
+        # un comment the raise to see the mail message will actually be sent
+        # need to configure actually settings in the dev environment to use the smtp source server of choice
+        # raise mail.inspect 
+        
         flash[:Notice] = 'Your Order has been placed.'
         redirect_to order 
       else
