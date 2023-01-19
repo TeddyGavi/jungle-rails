@@ -245,20 +245,33 @@ User.create!(
   password_confirmation: "1234",
 )
 
+5.times do 
+  User.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    e_mail: Faker::Internet.email,
+    password: "1234",
+    password_confirmation: "1234",
+  )
+end
+
 puts "Done with users"
 
 puts "Destroying all reviews"
   Review.destroy_all
 puts "SEEDING REVIEWS"
+
 all_products = Product.all
 all_users = User.all
+
+20.times do
 Review.create!(
   product: all_products.sample,
   user: all_users.sample,
   description: Faker::ChuckNorris.fact,
   rating: 4,
 )
-
+end
 puts "done with reviews"
 
 puts "DONE!"
