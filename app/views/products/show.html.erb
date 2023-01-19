@@ -36,6 +36,11 @@
           <div>Rating: <%= r.rating %>/5</div>  
         </header>
         <p class="mt-3"><%= r.description %></p>
+        <% if current_user.id == r.user_id %>
+        <div class="delete-review">
+          <%= link_to fa_icon('trash'), [:product, r], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+        <% end %>
       </div>
       <% end %>
     <% end %>
@@ -43,7 +48,7 @@
    
 <hr>
 
-
+<% if current_user %>
 
 <article class="new-review">
 <div class="review-form">Submit Your Review</div>
@@ -77,5 +82,8 @@
     </div>
   </div>
     </article>
+  <% else %>
+    <p>Please Login to write a review!</p>
+  <% end %>
 
 </section>

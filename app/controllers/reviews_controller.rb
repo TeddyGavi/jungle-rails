@@ -14,18 +14,22 @@ class ReviewsController < ApplicationController
       redirect_to product_path(@product)
     else
       flash[:Error] = "Review submission failed"
-      redirect_to product_path(@product)
+      redirect_back fallback_location: products_path
     end
   end
-protected
 
+  def destroy
+    @review_del = Review.find(params[:product_id])
+    @review_del.destroy
+  flash[:Notice] = "Review successfully deleted!"
+    redirect_back fallback_location: products_path
+  end
 
 
   private
 
   def review_params
     params.require(:review).permit(
-      :product_id,
       :description,
       :rating, 
   )
