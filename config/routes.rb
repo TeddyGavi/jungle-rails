@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   # get 'about/index'
   root to: 'products#index'
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create]
+  end
   resources :categories, only: [:show]
   resources :about, only: [:index]
   # resources :users, except: [:edit, :update, :destroy, :show]
