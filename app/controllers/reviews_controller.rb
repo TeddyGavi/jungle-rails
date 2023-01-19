@@ -1,34 +1,24 @@
 class ReviewsController < ApplicationController
-
+  before_action :authorize
   def create
-    # raise @current_user.inspect
-    # raise params[:product].inspect
-    # puts params[:product_id]
-    # puts params[:review]
+    puts params[:product_id]
     puts "look here!!!"
-    puts review_params
-    authorize
     @current_user = current_user
     @product = Product.find(params[:product_id])
-    # @product = Review.has_many(:products)
-    # raise @product.inspect
-    @new_review = Review.new({
-        product: @product, 
-        user: @current_user,
-        description: params[:description],
-        rating: params[:rating],
-      })
-
+    @new_review = Review.new(review_params)
+    @new_review.product = @product
+    @new_review.user = @current_user
+    
     if @new_review.save
       flash[:Notice] = "Review successfully created!"
-      redirect_to 'products'
+      redirect_to product_path(@product)
     else
       flash[:Error] = "Review submission failed"
-      redirect_to products_path(params[:product_id])
+      redirect_to product_path(@product)
     end
-
-
   end
+protected
+
 
 
   private
