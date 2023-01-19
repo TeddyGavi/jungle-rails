@@ -88,4 +88,17 @@
       text-align: center;
     }
   }
+  .reviews {
+    color: rgba(0, 130, 29, 1);
+    .review-container {
+      border: 3px solid rgba(0, 130, 29, 0.8);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+      header {
+        border-bottom: 2px solid rgba(0, 130, 29, 0.7);
+        .r-name {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
 }

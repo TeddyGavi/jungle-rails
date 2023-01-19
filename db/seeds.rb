@@ -269,7 +269,7 @@ Review.create!(
   product: all_products.sample,
   user: all_users.sample,
   description: Faker::ChuckNorris.fact,
-  rating: 4,
+  rating: rand(1...5),
 )
 end
 puts "done with reviews"
