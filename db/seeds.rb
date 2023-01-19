@@ -220,18 +220,46 @@ cat3.products.create!({
 puts "Destroying Sales"
   Sale.destroy_all
 
-puts "SEEDING SALES"
+puts "RE-SEEDING SALES"
 
   10.times do 
     start_date = Faker::Date.between(from: 1.year.ago, to: 1.year.from_now)
     sale_length = rand(1..14).day
-    Sale.create(
+    Sale.create!(
       name: Faker::Name.first_name,
       percent_off: rand(1..40),
       starts_on: start_date,
       ends_on: Faker::Date.between(from: start_date, to: start_date + sale_length)
     )
   end
+
+puts "Destroying Users"
+  User.destroy_all
+puts "RE-SEEDING USERS"
+
+User.create!(
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  e_mail: 'test@example.com',
+  password: "1234",
+  password_confirmation: "1234",
+)
+
+puts "Done with users"
+
+puts "Destroying all reviews"
+  Review.destroy_all
+puts "SEEDING REVIEWS"
+all_products = Product.all
+all_users = User.all
+Review.create!(
+  product: all_products.sample,
+  user: all_users.sample,
+  description: Faker::ChuckNorris.fact,
+  rating: 4,
+)
+
+puts "done with reviews"
 
 puts "DONE!"
 
